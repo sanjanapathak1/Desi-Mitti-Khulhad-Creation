@@ -11,8 +11,8 @@
     <header class="navbar">
         <div class="navbar-container">
             <div class="logo">
-                <img src="./images/logo.png">
-                <span class="logo-text">Desi Mitti</span>
+                <img src="./images/logo.png" alt="Desi Mitti Logo" class="logo-img">
+                <span class="logo-text">Desi Mitti Kulhad Creation</span>
             </div>
             <nav class="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
@@ -23,25 +23,37 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-logo-circle">
-                <img src="./images/logo.png" alt="Mitti Kulhad" class="hero-logo">
-            </div>
-            <h1 class="hero-title">Shuddh Mitti,<br>Shuddh Swad</h1>
-            <p class="hero-subtitle">Experience the purity of traditional clay craftsmanship</p>
-            <button class="hero-button">Shop Now</button>
+  <!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-logo-circle">
+            <img src="./images/logo.png" alt="Mitti Kulhad" class="hero-logo">
         </div>
-        <div class="hero-background"></div>
-    </section>
-
+        <h1 class="hero-title">Shuddh Mitti,<br>Shuddh Swad</h1>
+        <p class="hero-subtitle">Experience the purity of traditional clay craftsmanship</p>
+        <div class="hero-buttons">
+            <button class="hero-button primary">🛒 Shop Now</button>
+            <button class="hero-button secondary">📞 Contact Us</button>
+        </div>
+    </div>
+    <!-- Floating WhatsApp Button -->
+    <div class="floating-whatsapp" id="floatingWhatsapp">
+        <div class="whatsapp-pulse"></div>
+        <div class="whatsapp-inner">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 0C7.164 0 0 7.164 0 16c0 2.816 0.736 5.548 2.136 7.976L0 32l8.324-2.184C10.668 31.22 13.272 32 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.344c-2.464 0-4.892-0.656-7-1.896l-0.5-0.296-4.936 1.296 1.32-4.808-0.324-0.516C3.288 21.012 2.656 18.548 2.656 16 2.656 8.648 8.648 2.656 16 2.656S29.344 8.648 29.344 16 23.352 29.344 16 29.344zm7.06-7.684c-0.308-0.5-1.02-0.908-2.1-1.588-0.388-0.24-0.876-0.372-1.356-0.32-0.516 0.056-1.008 0.36-1.344 0.832l-0.5 0.704c-0.1 0.136-0.28 0.22-0.472 0.188-0.544-0.092-1.84-0.68-3.536-2.18-1.304-1.164-2.184-2.536-2.44-2.964-0.064-0.108-0.064-0.24 0.012-0.34l0.5-0.596c0.372-0.444 0.5-1.056 0.336-1.6-0.164-0.544-0.94-2.26-1.288-3.096-0.34-0.82-0.688-0.708-0.94-0.72-0.244-0.012-0.524-0.016-0.804-0.016s-0.752 0.108-1.144 0.54c-0.392 0.432-1.504 1.472-1.504 3.588s1.544 4.16 1.76 4.448c0.216 0.288 3.04 4.64 7.368 6.508 1.028 0.444 1.832 0.708 2.46 0.908 1.036 0.328 1.976 0.28 2.72 0.172 0.828-0.124 2.54-1.04 2.9-2.044s0.356-1.864 0.248-2.044c-0.108-0.18-0.308-0.288-0.616-0.488z" fill="white"/>
+            </svg>
+        </div>
+    </div>
+</section>
     <!-- Crafted with Tradition Section -->
     <section class="tradition-section">
         <h2 class="section-title">Crafted with Tradition</h2>
         <div class="tradition-content">
             <div class="tradition-image">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23D4A5A5'/%3E%3Ccircle cx='150' cy='150' r='80' fill='%23C291A0'/%3E%3Ccircle cx='250' cy='150' r='80' fill='%23D4A5A5'/%3E%3Crect x='100' y='200' width='200' height='80' fill='%23B08A9A'/%3E%3C/svg%3E" alt="Handmade crafting" class="tradition-img">
+                <img src="./images/kulhads.png" alt="Handmade crafting hands" class="tradition-img">
             </div>
             <div class="tradition-text">
                 <p class="tradition-description">
@@ -60,27 +72,69 @@
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-image">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23654321'/%3E%3Ccircle cx='150' cy='120' r='60' fill='%238B4513'/%3E%3Cpath d='M 120 180 Q 120 200 150 210 Q 180 200 180 180' fill='%238B6914'/%3E%3C/svg%3E" alt="Product 1">
+                    <img src="./images/kulhad 1.png" alt="Classic Kulhad">
                 </div>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Kulhad</h3>
+                    <p class="product-size">Size: 150ml (Standard)</p>
+                    <p class="product-price">₹25 <span class="per-piece">/piece</span></p>
+                </div>
+                <button class="buy-now-btn" data-phone="9779827308423">Buy Now</button>
             </div>
             <div class="product-card">
                 <div class="product-image">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23F5DEB3'/%3E%3Ccircle cx='100' cy='150' r='40' fill='%23D2B48C'/%3E%3Ccircle cx='150' cy='120' r='45' fill='%23E8C8A0'/%3E%3C/svg%3E" alt="Product 2">
+                    <img src="./images/khulhad 2.png" alt="Large Kulhad">
                 </div>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <div class="product-info">
+                    <h3 class="product-name">Large Kulhad</h3>
+                    <p class="product-size">Size: 250ml (Jumbo)</p>
+                    <p class="product-price">₹40 <span class="per-piece">/piece</span></p>
+                </div>
+                <button class="buy-now-btn" data-phone="9779827308423">Buy Now</button>
             </div>
             <div class="product-card">
                 <div class="product-image">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23364558'/%3E%3Ccircle cx='120' cy='100' r='50' fill='%23C85A54'/%3E%3Ccircle cx='180' cy='110' r='55' fill='%23D67C7C'/%3E%3C/svg%3E" alt="Product 3">
+                    <img src="" alt="Handpainted Kulhad">
                 </div>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <div class="product-info">
+                    <h3 class="product-name">Handpainted Kulhad</h3>
+                    <p class="product-size">Size: 150ml (Artisan)</p>
+                    <p class="product-price">₹60 <span class="per-piece">/piece</span></p>
+                </div>
+                <button class="buy-now-btn" data-phone="9779827308423">Buy Now</button>
             </div>
             <div class="product-card">
                 <div class="product-image">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23D2691E'/%3E%3Ccircle cx='150' cy='150' r='60' fill='%23A0522D'/%3E%3Crect x='130' y='90' width='40' height='120' fill='%238B4513'/%3E%3C/svg%3E" alt="Product 4">
+                    <img src="./images/kulhad 3.png" alt="Mini Kulhad">
                 </div>
-                <button class="add-to-cart-btn">Add to Cart</button>
+                <div class="product-info">
+                    <h3 class="product-name">Mini Kulhad</h3>
+                    <p class="product-size">Size: 80ml (Shot)</p>
+                    <p class="product-price">₹15 <span class="per-piece">/piece</span></p>
+                </div>
+                <button class="buy-now-btn" data-phone="9779827308423">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1565193566173-7ceb0efdf967?w=300&h=300&fit=crop" alt="Curd Setting Pot">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Curd Setting Pot</h3>
+                    <p class="product-size">Size: 300ml (Deep)</p>
+                    <p class="product-price">₹55 <span class="per-piece">/piece</span></p>
+                </div>
+                <button class="buy-now-btn" data-phone="9779827308423">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=300&h=300&fit=crop" alt="Tea Set Combo">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Tea Set Combo (6 pcs)</h3>
+                    <p class="product-size">Size: 150ml × 6</p>
+                    <p class="product-price">₹199 <span class="per-piece">/set</span></p>
+                </div>
+                <button class="buy-now-btn" data-phone="9779827308423">Buy Now</button>
             </div>
         </div>
     </section>
@@ -88,7 +142,7 @@
     <!-- Why Choose Us Section -->
     <section class="why-choose-section">
         <h2 class="section-title">Why Choose Us</h2>
-        <div class="features-grid">
+        <div class="features-grid-2col">
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -133,22 +187,22 @@
         <h2 class="section-title">Our Creations</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%238B5A3C'/%3E%3Ccircle cx='150' cy='120' r='70' fill='%23A0522D'/%3E%3Cpath d='M 120 200 L 180 200 L 170 280 L 130 280 Z' fill='%236B3410'/%3E%3C/svg%3E" alt="Pottery creation 1">
+                <img src="https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=400&h=400&fit=crop" alt="Pottery creation 1">
             </div>
             <div class="gallery-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23F5F5DC'/%3E%3Ccircle cx='80' cy='150' r='50' fill='%23E8DCC4'/%3E%3Ccircle cx='150' cy='100' r='60' fill='%23D2B48C'/%3E%3C/svg%3E" alt="Pottery creation 2">
+                <img src="https://images.unsplash.com/photo-1565193566173-7ceb0efdf967?w=400&h=400&fit=crop" alt="Pottery creation 2">
             </div>
             <div class="gallery-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23654321'/%3E%3Ccircle cx='150' cy='120' r='65' fill='%238B4513'/%3E%3Crect x='130' y='190' width='40' height='80' fill='%235D3A1A'/%3E%3C/svg%3E" alt="Pottery creation 3">
+                <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=400&fit=crop" alt="Pottery creation 3">
             </div>
             <div class="gallery-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23E3D4C4'/%3E%3Ccircle cx='100' cy='140' r='55' fill='%23D2C1B0'/%3E%3Ccircle cx='170' cy='160' r='45' fill='%23C4B5A0'/%3E%3C/svg%3E" alt="Pottery creation 4">
+                <img src="https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=400&h=400&fit=crop" alt="Pottery creation 4">
             </div>
             <div class="gallery-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23364558'/%3E%3Ccircle cx='150' cy='100' r='70' fill='%23456789'/%3E%3Cpath d='M 120 180 L 180 180 L 175 280 L 125 280 Z' fill='%23556B7F'/%3E%3C/svg%3E" alt="Pottery creation 5">
+                <img src="https://images.unsplash.com/photo-1565193566173-7ceb0efdf967?w=400&h=400&fit=crop" alt="Pottery creation 5">
             </div>
             <div class="gallery-item">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23D2691E'/%3E%3Ccircle cx='120' cy='130' r='60' fill='%23A0522D'/%3E%3Ccircle cx='180' cy='170' r='50' fill='%23B85C45'/%3E%3C/svg%3E" alt="Pottery creation 6">
+                <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=400&fit=crop" alt="Pottery creation 6">
             </div>
         </div>
     </section>
@@ -168,7 +222,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <div class="footer-logo">
-                    <img src="./images/logo.png " class="footer-logo-img">
+                    <img src="./images/logo.png" alt="Desi Mitti" class="footer-logo-img">
                     <span class="footer-logo-text">Desi Mitti</span>
                 </div>
                 <p class="footer-description">Bringing traditional clay craftsmanship to your table. Authentic, eco-friendly, and sustainable.</p>

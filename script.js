@@ -6,9 +6,52 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initializeWhatsAppButton();
+    initializeBuyNowButtons();
     initializeSmoothScroll();
     initializeNavigation();
     initializeAnimations();
+    initializeShopNowButton();
+});
+
+// ============================================
+// FLOATING WHATSAPP BUTTON
+// ============================================
+
+function initializeFloatingWhatsapp() {
+    const floatingBtn = document.getElementById('floatingWhatsapp');
+    const phoneNumber = '9779827308423';
+    
+    if (floatingBtn) {
+        floatingBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const message = encodeURIComponent("Hi! I'd like to know more about your kulhads.");
+            openWhatsApp(phoneNumber, message);
+        });
+    }
+}
+
+// ============================================
+// CONTACT US BUTTON IN HERO
+// ============================================
+
+function initializeContactButton() {
+    const contactBtn = document.querySelector('.hero-button.secondary');
+    const phoneNumber = '9779827308423';
+    
+    if (contactBtn) {
+        contactBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const message = encodeURIComponent("Hi Desi Mitti! I have a question about your products.");
+            openWhatsApp(phoneNumber, message);
+        });
+    }
+}
+
+// Add these to your DOMContentLoaded:
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing initializations...
+    initializeFloatingWhatsapp();
+    initializeContactButton();
 });
 
 // ============================================
@@ -17,35 +60,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initializeWhatsAppButton() {
     const whatsappButton = document.getElementById('whatsappBtn');
-    const whatsappNumber = '+977 9827308423';
-    const whatsappNumberClean = '9779827308423'; // WhatsApp format without + and spaces
+    const whatsappNumberClean = '9779827308423';
     
     if (whatsappButton) {
         whatsappButton.addEventListener('click', function(e) {
             e.preventDefault();
-            openWhatsApp(whatsappNumberClean);
+            const message = encodeURIComponent("Hi, I'm interested in ordering kulhads from Desi Mitti!");
+            openWhatsApp(whatsappNumberClean, message);
         });
     }
 }
 
-function openWhatsApp(phoneNumber) {
-    // Determine if user is on mobile or desktop
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+// ============================================
+// Buy Now Button Integration
+// ============================================
+
+function initializeBuyNowButtons() {
+    const buyNowButtons = document.querySelectorAll('.buy-now-btn');
     
-    // Create WhatsApp message with pre-filled text
-    const message = encodeURIComponent("Hi, I'm interested in ordering kulhads from Desi Mitti!");
+    buyNowButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const phoneNumber = this.getAttribute('data-phone');
+            
+            // Get product name from the same card
+            const productCard = this.closest('.product-card');
+            const productName = productCard ? productCard.querySelector('.product-name').textContent : 'Kulhad';
+            
+            const message = encodeURIComponent(`Hi, I'm interested in buying "${productName}" from Desi Mitti. Please share details.`);
+            openWhatsApp(phoneNumber, message);
+        });
+    });
+}
+
+function openWhatsApp(phoneNumber, message) {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     let whatsappUrl;
     
     if (isMobile) {
-        // Mobile WhatsApp app
         whatsappUrl = `whatsapp://send?phone=${phoneNumber}&text=${message}`;
     } else {
-        // Desktop/Web WhatsApp
         whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     }
     
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
 }
 
@@ -64,22 +122,10 @@ function initializeSmoothScroll() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                // Remove active state from all links
-                navLinks.forEach(l => l.style.color = '');
-                
-                // Add active state to clicked link
-                this.style.color = 'var(--primary-brown)';
-                
-                // Scroll to section
                 targetSection.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
-                // Reset link color after scroll
-                setTimeout(() => {
-                    this.style.color = '';
-                }, 500);
             }
         });
     });
@@ -98,7 +144,6 @@ function initializeNavigation() {
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
             
             if (scrollY >= (sectionTop - 200)) {
                 current = section.getAttribute('id');
@@ -119,88 +164,48 @@ function initializeNavigation() {
 // ============================================
 
 function initializeAnimations() {
-    // Observe elements for animation on scroll
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: '0px 0px -50px 0px'
     };
     
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
             }
         });
     }, observerOptions);
     
-    // Animate product cards
+    // Observe product cards
     const productCards = document.querySelectorAll('.product-card');
-    productCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
+    productCards.forEach(card => {
         observer.observe(card);
     });
     
-    // Animate feature cards
+    // Observe feature cards
     const featureCards = document.querySelectorAll('.feature-card');
-    featureCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
+    featureCards.forEach(card => {
         observer.observe(card);
     });
     
-    // Animate gallery items
+    // Observe gallery items
     const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'scale(0.9)';
-        item.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
+    galleryItems.forEach(item => {
         observer.observe(item);
     });
 }
 
 // ============================================
-// Add to Cart Button Functionality
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Show feedback
-            const originalText = this.textContent;
-            this.textContent = 'Added to Cart! 🛒';
-            this.style.backgroundColor = 'var(--primary-brown)';
-            
-            // Play a subtle animation
-            this.style.transform = 'scale(1.05)';
-            
-            setTimeout(() => {
-                this.textContent = originalText;
-                this.style.transform = 'scale(1)';
-                this.style.backgroundColor = '';
-            }, 2000);
-        });
-    });
-});
-
-// ============================================
 // Shop Now Button
 // ============================================
 
-document.addEventListener('DOMContentLoaded', function() {
+function initializeShopNowButton() {
     const shopNowButton = document.querySelector('.hero-button');
     
     if (shopNowButton) {
         shopNowButton.addEventListener('click', function(e) {
             e.preventDefault();
-            // Scroll to products section
             const productsSection = document.querySelector('#products');
             if (productsSection) {
                 productsSection.scrollIntoView({
@@ -210,125 +215,64 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
+}
 
 // ============================================
-// Sticky Navigation Styling
+// Sticky Navigation Shadow
 // ============================================
 
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     
-    if (window.scrollY > 100) {
-        navbar.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+    if (navbar) {
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.05)';
+        }
     }
 });
 
+
 // ============================================
-// Utility Functions
+// SCROLL ANIMATIONS
 // ============================================
 
-/**
- * Format phone number to WhatsApp standard
- */
-function formatPhoneForWhatsApp(phone) {
-    // Remove all non-numeric characters
-    const cleaned = phone.replace(/\D/g, '');
-    
-    // Add country code if not present
-    if (!cleaned.startsWith('977')) {
-        return '977' + cleaned;
-    }
-    
-    return cleaned;
-}
+function initializeScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-/**
- * Create WhatsApp share link
- */
-function createWhatsAppLink(phoneNumber, message = '') {
-    const cleanPhone = formatPhoneForWhatsApp(phoneNumber);
-    const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/${cleanPhone}?text=${encodedMessage}`;
-}
-
-/**
- * Copy to clipboard functionality
- */
-function copyToClipboard(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => {
-            console.log('Copied to clipboard: ' + text);
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Keep observing to re-trigger if needed
+                // observer.unobserve(entry.target); // Remove this line to keep re-triggering
+            }
         });
-    }
-}
+    }, observerOptions);
 
-/**
- * Log page analytics
- */
-function logPageEvent(eventName, eventData = {}) {
-    console.log(`Event: ${eventName}`, eventData);
-    // This can be extended to send data to analytics services
-}
+    // Observe all elements with animation classes
+    const animatableElements = document.querySelectorAll([
+        '.product-card',
+        '.feature-card',
+        '.gallery-item',
+        '.tradition-image',
+        '.tradition-text',
+        '.ready-title',
+        '.ready-subtitle',
+        '.whatsapp-button',
+        '.section-title'
+    ].join(','));
 
-// ============================================
-// Accessibility Enhancements
-// ============================================
-
-// Keyboard navigation support
-document.addEventListener('keydown', function(event) {
-    // Press '?' for help (optional)
-    if (event.key === '?') {
-        console.log('Keyboard shortcuts available');
-    }
-    
-    // Press 'w' to open WhatsApp (optional shortcut)
-    if (event.key === 'w' && event.ctrlKey) {
-        event.preventDefault();
-        openWhatsApp('9779827308423');
-    }
-});
-
-// ============================================
-// Performance Monitoring
-// ============================================
-
-// Log when page is fully loaded
-window.addEventListener('load', function() {
-    console.log('Desi Mitti website fully loaded');
-    logPageEvent('page_load', {
-        timestamp: new Date(),
-        title: document.title
+    animatableElements.forEach(el => {
+        observer.observe(el);
     });
-});
-
-// ============================================
-// Service Worker Registration (Optional for PWA)
-// ============================================
-
-if ('serviceWorker' in navigator) {
-    // Uncomment the following line to enable service worker
-    // navigator.serviceWorker.register('sw.js').then(registration => {
-    //     console.log('Service Worker registered');
-    // }).catch(error => {
-    //     console.log('Service Worker registration failed:', error);
-    // });
 }
 
-// ============================================
-// External Link Tracking
-// ============================================
-
-document.addEventListener('click', function(e) {
-    // Track clicks on external links
-    if (e.target.tagName === 'A' && e.target.hostname !== window.location.hostname) {
-        logPageEvent('external_link_click', {
-            url: e.target.href,
-            target: e.target.textContent
-        });
-    }
+// Call on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initializeScrollAnimations();
 });
