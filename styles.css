@@ -1920,7 +1920,6 @@ body {
     }
 }
 
-
 .gallery-slider {
     overflow: hidden;
     width: 100%;
@@ -1930,39 +1929,53 @@ body {
 
 .gallery-track {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     width: max-content;
     animation: scrollLoop 25s linear infinite;
 }
 
-/* Pause on hover for desktop, pause on touch for mobile */
-.gallery-slider:hover .gallery-track,
+/* Pause on hover for desktop */
+.gallery-slider:hover .gallery-track {
+    animation-play-state: paused;
+}
+
+/* For touch devices - pause on tap */
 .gallery-slider:active .gallery-track {
     animation-play-state: paused;
 }
 
 .gallery-item {
-    min-width: 180px;
-    height: 180px;
+    min-width: 250px;
+    height: 250px;
     border-radius: 12px;
     overflow: hidden;
     flex-shrink: 0;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.4s ease;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Touch feedback */
+.gallery-item:active {
+    transform: scale(0.98);
 }
 
 .gallery-item:active img {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
-/* Key animation */
+/* Key animation - INFINITE LOOP */
 @keyframes scrollLoop {
     0% {
         transform: translateX(0);
@@ -1972,29 +1985,35 @@ body {
     }
 }
 
-/* Show All Button Container */
+/* Show All Button */
 .show-all-container {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 35px;
     padding: 0 1rem;
 }
 
 .show-all-btn {
     display: inline-block;
     padding: 12px 28px;
-    background-color: #8B5E3C;
-    color: white;
+    background: transparent;
+    border: 2px solid #D2691E;
+    color: #D2691E;
     text-decoration: none;
     border-radius: 40px;
     font-weight: 600;
     font-size: 1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.show-all-btn:hover {
+    background: #D2691E;
+    color: white;
+    transform: translateY(-2px);
 }
 
 .show-all-btn:active {
     transform: scale(0.96);
-    background-color: #6d4a2e;
 }
 
 /* ============================================
@@ -2002,13 +2021,13 @@ body {
    ============================================ */
 @media (max-width: 768px) {
     .gallery-track {
-        gap: 12px;
+        gap: 15px;
         animation-duration: 20s;
     }
 
     .gallery-item {
-        min-width: 160px;
-        height: 160px;
+        min-width: 200px;
+        height: 200px;
         border-radius: 10px;
     }
 
@@ -2019,21 +2038,27 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE - MOBILE
+   RESPONSIVE - MOBILE LARGE
    ============================================ */
 @media (max-width: 576px) {
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        padding-top: 1.5rem;
+    }
+
     .gallery-slider {
         padding: 0.3rem 0;
     }
 
     .gallery-track {
-        gap: 10px;
+        gap: 12px;
         animation-duration: 18s;
     }
 
     .gallery-item {
-        min-width: 130px;
-        height: 130px;
+        min-width: 160px;
+        height: 160px;
         border-radius: 10px;
     }
 
@@ -2044,7 +2069,31 @@ body {
     .show-all-btn {
         padding: 10px 22px;
         font-size: 0.9rem;
-        border-radius: 35px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE MEDIUM
+   ============================================ */
+@media (max-width: 480px) {
+    .gallery-track {
+        gap: 10px;
+        animation-duration: 15s;
+    }
+
+    .gallery-item {
+        min-width: 140px;
+        height: 140px;
+        border-radius: 8px;
+    }
+
+    .show-all-container {
+        margin-top: 20px;
+    }
+
+    .show-all-btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
     }
 }
 
@@ -2054,27 +2103,54 @@ body {
 @media (max-width: 400px) {
     .gallery-track {
         gap: 8px;
-        animation-duration: 15s;
+        animation-duration: 12s;
     }
 
     .gallery-item {
-        min-width: 110px;
-        height: 110px;
+        min-width: 120px;
+        height: 120px;
         border-radius: 8px;
     }
 
-    .show-all-container {
-        margin-top: 20px;
-    }
-
     .show-all-btn {
-        padding: 8px 18px;
-        font-size: 0.85rem;
+        padding: 8px 16px;
+        font-size: 0.8rem;
     }
 }
 
 /* ============================================
-   TOUCH-FRIENDLY (remove hover, add tap effects)
+   RESPONSIVE - EXTRA SMALL (under 350px)
+   ============================================ */
+@media (max-width: 350px) {
+    .gallery-track {
+        gap: 6px;
+        animation-duration: 10s;
+    }
+
+    .gallery-item {
+        min-width: 100px;
+        height: 100px;
+        border-radius: 6px;
+    }
+}
+
+/* ============================================
+   LANDSCAPE MODE FOR MOBILES
+   ============================================ */
+@media (max-width: 900px) and (orientation: landscape) {
+    .gallery-item {
+        min-width: 180px;
+        height: 180px;
+    }
+    
+    .gallery-track {
+        animation-duration: 22s;
+        gap: 15px;
+    }
+}
+
+/* ============================================
+   TOUCH DEVICES (remove hover, keep tap)
    ============================================ */
 @media (hover: none) and (pointer: coarse) {
     .gallery-slider:hover .gallery-track {
@@ -2086,7 +2162,7 @@ body {
     }
     
     .gallery-item:active {
-        transform: scale(0.98);
+        transform: scale(0.97);
     }
     
     .gallery-item:active img {
@@ -2095,21 +2171,7 @@ body {
 }
 
 /* ============================================
-   LANDSCAPE MODE FOR MOBILES
-   ============================================ */
-@media (max-width: 900px) and (orientation: landscape) {
-    .gallery-item {
-        min-width: 150px;
-        height: 150px;
-    }
-    
-    .gallery-track {
-        animation-duration: 22s;
-    }
-}
-
-/* ============================================
-   REDUCED MOTION PREFERENCE (accessibility)
+   ACCESSIBILITY - REDUCED MOTION
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
     .gallery-track {
