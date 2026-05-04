@@ -1,0 +1,418 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Garamond', 'Segoe UI', serif;
+    background: linear-gradient(135deg, #fef9e8 0%, #fdf3e2 100%);
+    min-height: 100vh;
+}
+
+/* Header Navigation */
+.gallery-header {
+    background: #2c241a;
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.logo-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #D2691E;
+    font-style: italic;
+}
+
+.back-home {
+    background: #D2691E;
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.back-home:hover {
+    background: #8B4513;
+    transform: translateY(-2px);
+}
+
+/* Gallery Title */
+.gallery-title-section {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #f5e2c1, #f7d9b5);
+}
+
+.gallery-title-section h1 {
+    font-size: 2rem;
+    color: #592c17;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-title-section p {
+    font-size: 1rem;
+    color: #4e3824;
+}
+
+/* Full Gallery Grid */
+.full-gallery-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.full-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border: 1px solid rgba(210, 105, 30, 0.2);
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    border-color: #D2691E;
+}
+
+.gallery-card:active {
+    transform: scale(0.98);
+}
+
+.gallery-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Image Preview Modal */
+.preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+}
+
+.preview-content {
+    max-width: 95vw;
+    max-height: 95vh;
+    position: relative;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    border: 3px solid rgba(255,215,170,0.9);
+    object-fit: contain;
+}
+
+.close-preview {
+    position: absolute;
+    top: -45px;
+    right: -5px;
+    font-size: 40px;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 5px 10px;
+}
+
+.close-preview:hover {
+    color: #D2691E;
+    transform: scale(1.1);
+}
+
+.close-preview:active {
+    transform: scale(0.95);
+}
+
+/* Footer */
+.footer {
+    background: #2c241a;
+    color: #ede0cf;
+    text-align: center;
+    padding: 1.2rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - TABLET
+   ============================================ */
+@media (max-width: 768px) {
+    .gallery-header {
+        padding: 0.8rem 1.2rem;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .back-home {
+        padding: 6px 16px;
+        font-size: 0.85rem;
+    }
+
+    .gallery-title-section h1 {
+        font-size: 1.6rem;
+    }
+
+    .gallery-title-section p {
+        font-size: 0.9rem;
+    }
+
+    .full-gallery-container {
+        padding: 1rem;
+    }
+
+    .full-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .gallery-card {
+        border-radius: 16px;
+    }
+
+    .preview-image {
+        max-height: 70vh;
+        border-radius: 16px;
+    }
+
+    .close-preview {
+        top: -50px;
+        right: -5px;
+        font-size: 38px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE (SMALL PHONES)
+   ============================================ */
+@media (max-width: 576px) {
+    .gallery-header {
+        padding: 0.7rem 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.7rem;
+    }
+
+    .logo-area {
+        justify-content: center;
+    }
+
+    .logo-img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .logo-text {
+        font-size: 0.95rem;
+    }
+
+    .back-home {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+
+    .gallery-title-section {
+        padding: 1.2rem 0.8rem;
+    }
+
+    .gallery-title-section h1 {
+        font-size: 1.3rem;
+    }
+
+    .gallery-title-section p {
+        font-size: 0.8rem;
+    }
+
+    .full-gallery-container {
+        padding: 0.8rem;
+    }
+
+    .full-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .gallery-card {
+        border-radius: 14px;
+    }
+
+    .preview-content {
+        max-width: 98vw;
+    }
+
+    .preview-image {
+        max-height: 60vh;
+        border-radius: 14px;
+        border-width: 2px;
+    }
+
+    .close-preview {
+        top: -45px;
+        right: -8px;
+        font-size: 34px;
+    }
+
+    .footer {
+        padding: 1rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - VERY SMALL PHONES (under 400px)
+   ============================================ */
+@media (max-width: 400px) {
+    .gallery-header {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 0.85rem;
+    }
+
+    .back-home {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+    }
+
+    .gallery-title-section h1 {
+        font-size: 1.2rem;
+    }
+
+    .gallery-title-section p {
+        font-size: 0.7rem;
+    }
+
+    .full-gallery-grid {
+        gap: 0.6rem;
+    }
+
+    .gallery-card {
+        border-radius: 12px;
+    }
+
+    .close-preview {
+        top: -40px;
+        right: -5px;
+        font-size: 30px;
+    }
+}
+
+/* ============================================
+   LANDSCAPE MODE FOR MOBILES
+   ============================================ */
+@media (max-width: 900px) and (orientation: landscape) {
+    .gallery-header {
+        padding: 0.5rem 1rem;
+    }
+
+    .gallery-title-section {
+        padding: 0.8rem;
+    }
+
+    .gallery-title-section h1 {
+        font-size: 1.2rem;
+    }
+
+    .full-gallery-container {
+        padding: 0.8rem;
+    }
+
+    .full-gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+    }
+
+    .preview-image {
+        max-height: 75vh;
+    }
+}
+
+/* ============================================
+   TOUCH-FRIENDLY (remove hover effects on mobile)
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+    .gallery-card:hover {
+        transform: none;
+    }
+    
+    .gallery-card:hover img {
+        transform: none;
+    }
+    
+    .gallery-card:active {
+        transform: scale(0.97);
+    }
+    
+    .gallery-card:active img {
+        transform: scale(0.98);
+    }
+}

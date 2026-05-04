@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Gallery - Desi Mitti Kulhad Creations</title>
+    <link rel="stylesheet" href="galley.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="gallery-header">
+        <div class="logo-area">
+            <img src="./images/logo.png" alt="Desi Mitti" class="logo-img" onerror="this.src='https://placehold.co/80x80?text=DM'">
+            <span class="logo-text">Desi Mitti Kulhad Creation</span>
+        </div>
+        <a href="index.html" class="back-home">← Back to Home</a>
+    </div>
+
+    <!-- Title Section -->
+    <div class="gallery-title-section">
+        <h1>📸 Our Complete Gallery</h1>
+        <p>Explore our beautiful collection of handmade clay kulhads and pottery creations</p>
+    </div>
+
+    <!-- Full Gallery Grid -->
+    <div class="full-gallery-container">
+        <div class="full-gallery-grid" id="fullGalleryGrid"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2026 Desi Mitti Kulhad Creation. All rights reserved.</p>
+    </div>
+
+    <!-- Image Preview Modal -->
+    <div id="previewModal" class="preview-modal">
+        <div class="preview-content">
+            <button class="close-preview" id="closePreviewBtn">&times;</button>
+            <img id="previewImage" class="preview-image" alt="Enlarged view">
+        </div>
+    </div>
+
+    <script>
+        // All gallery images (complete collection - no names)
+        const allGalleryImages = [
+            "./images/1.png",
+            "./images/9.png",
+            "./images/3.png",
+            "./images/4.png",
+            "./images/5.png",
+            "./images/6.png",
+            "./images/7.png",
+            "./images/8.png",
+            "./images/kulhads.png",
+            
+            "./images/large.png",
+            "./images/9.png",
+            "./images/10.png",
+            "./images/11.png",
+            "./images/12.png",
+            "./images/13.png"
+        ];
+
+        const galleryGrid = document.getElementById('fullGalleryGrid');
+        const previewModal = document.getElementById('previewModal');
+        const previewImage = document.getElementById('previewImage');
+        const closePreviewBtn = document.getElementById('closePreviewBtn');
+
+        // Build gallery
+        function buildGallery() {
+            galleryGrid.innerHTML = '';
+            allGalleryImages.forEach(imgSrc => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.alt = 'Gallery Image';
+                img.onerror = function() {
+                    this.src = 'https://images.unsplash.com/photo-1582639518799-1ab8c3ed4caf?w=400&h=400&fit=crop';
+                };
+                card.appendChild(img);
+                card.addEventListener('click', () => openPreview(imgSrc));
+                galleryGrid.appendChild(card);
+            });
+        }
+
+        function openPreview(imgSrc) {
+            previewImage.src = imgSrc;
+            previewModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePreview() {
+            previewModal.style.display = 'none';
+            document.body.style.overflow = '';
+            previewImage.src = '';
+        }
+
+        // Event listeners
+        closePreviewBtn.addEventListener('click', closePreview);
+        previewModal.addEventListener('click', (e) => {
+            if (e.target === previewModal) closePreview();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && previewModal.style.display === 'flex') {
+                closePreview();
+            }
+        });
+
+        // Build gallery on load
+        buildGallery();
+    </script>
+</body>
+</html>
